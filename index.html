@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>汉诺塔</title>
+	<link type="text/css" rel="stylesheet" href="page.css"></style>
+</head>
+<body>
+	<div class="stage">
+		<div class="tower tower1" id="tower1" data-tower="A">
+		</div>
+		<div class="tower tower2" id="tower2" data-tower="B">
+		</div>
+		<div class="tower tower3" id="tower3" data-tower="C">
+		</div>
+	</div>
+	<div class="plate-collection" style="display:none" id="plate-collection"></div>
+	<div class="panel">
+		<button class="btn start-btn" id="start-btn">开始移动</button>
+		<button class="btn reset-btn" id="reset-btn">重置</button>
+	</div>
+	<div class="console" id="console">
+		<p class="log">--------------------- log --------------------------</p>
+	</div>
+	<script src="https://cdn.bootcss.com/jquery/2.2.0/jquery.js"></script>
+	<script src="main.js"></script>
+</body>
+</html>	

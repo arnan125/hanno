@@ -1,0 +1,100 @@
+html,body {
+	padding: 0;
+	margin: 0;
+}
+
+@baseR : 40;
+@deltaR : 2;
+@baseColor : rgb(226,206,85);
+@colorLightenRatio : 40;
+@baseMargin : 12;
+
+.size(@width, @height:@width) {
+	width: unit(@width, px);
+	height: unit(@height,px);
+}
+
+.stage {
+	display: -webkit-box;
+
+	.tower {
+		display: -webkit-box;
+		-webkit-box-orient: vertical ;
+		-webkit-box-pack:end;
+		-webkit-box-align:center;
+		-webkit-flex:1;
+		position: relative;
+		width: 30%;
+		perspective-origin:bottom;
+		padding-top: 20px;
+		padding-bottom: 20px;
+
+	}
+	.plate {
+		border-radius: 50%;
+		text-align:center; 
+		background-color: #ccc;
+		transform: rotateX(60deg);
+		color: #fff;
+		font-size: 30px;
+		box-shadow: 0 13px 5px 0px #2F2B0E;
+		position: relative;
+	}
+
+	.generate-plates(64);
+	
+	.generate-plates(@n) when (@n > 0){
+		.plate-@{n} {
+			// background-color: lighten(@baseColor, percentage(@baseR/(@baseR + @n * @colorLightenRatio * @deltaR)));
+			background-color: @baseColor;
+			.size(@baseR + @n * @deltaR);
+			line-height: unit(@baseR + @n * @deltaR,px);
+			z-index: 100- @n;
+			margin-bottom: unit(@baseMargin - @baseR - @n * @deltaR, px);
+		}
+		.generate-plates(@n - 1);
+	}
+}
+
+.panel {
+	padding: 20px;
+	display: -webkit-box;
+	-webkit-box-pack : center;
+
+	.btn {
+		display: block;
+		.size(80px, 36px);
+		background-color: #ccc;
+		color: #333;
+		text-align: center;
+		border: none;
+		&:focus {
+			outline: none;
+		}
+		&:active {
+			outline: none;
+			background-color: darken(#ccc, 20%);
+		}
+	}
+	.start-btn {
+		margin: 20px 10px; 
+	}
+	.reset-btn {
+		margin: 20px 10px; 
+	}
+}
+.console {
+	margin-left: 10%;
+	margin-right: 10%;
+	padding: 20px;
+	max-height: 200px;
+	background-color: #000;
+	overflow-y: auto;
+	.log {
+		font-size: 14px;
+		line-height: 1.3;
+		padding: 0;
+		margin:0;
+		color: #fff; 
+	}
+}
